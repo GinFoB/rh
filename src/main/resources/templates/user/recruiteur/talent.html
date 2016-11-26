@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link href="../../static/dist/semantic.min.css"
+          th:href="@{/dist/semantic.min.css}" rel="stylesheet" media="screen" />
+    <style>
+        #ee{
+            margin-top: 59px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
+    </script>
+
+    <script src="../../static/dist/semantic.min.js"
+            th:src="@{/dist/semantic.min.js}">
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="ui inverted large top fixed hidden menu">
+    <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item">About</a>
+        <a class="item">FQA</a>
+        <a class="item">Contact</a>
+        <div class="right menu">
+
+        </div>
+    </div>
+</div>
+
+
+<form th:object="${cv}" th:action="@{/search/talent}" method="post" class="ui form" id="ee">
+
+    <div class="ui form" id="lang">
+        <div class="field column eight wide">
+            <textarea th:field="*{skill}" rows="2" placeholder="Description de poste"></textarea>
+        </div>
+    </div>
+
+
+    <div class="ui form" id="Expérience">
+        <div class="field column eight wide">
+            <textarea  th:field="*{formation}" rows="2" placeholder="Profile recherché"></textarea>
+        </div>
+    </div>
+
+    <button class="ui button blue" type="submit" id="btn-add">OK</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+    <link href="../../static/dist/semantic.min.css"
+          th:href="@{/dist/semantic.min.css}" rel="stylesheet" media="screen" />
+
+    <link href="/dist/css/dropzone.css" rel="stylesheet" />
+
+    <style>
+        .dropzone-previews {
+            height: 200px;
+            width: 500px;
+            border: dashed 1px red;
+            background-color: lightblue;
+        }
+    </style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
+    </script>
+
+    <script src="../../static/dist/semantic.min.js"
+            th:src="@{/dist/semantic.min.js}">
+    </script>
+
+
+</head>
+<body>
+
+<div id="previews" class="dropzone-previews">
+    <input id="clickable" name="file" type="file"  />
+</div>
+
+<img src="" id="IMAGE_ID"/>
+
+
+<script src="/dist/js/dropzone.js"></script>
+
+      <script>
+                             new Dropzone("div#previews", { // Make the whole body a dropzone
+                             url: "/upload/bg", // Set the url
+                            previewsContainer: "#previews", // Define the container to display the previews
+                            clickable: "#clickable", // Define the element that should be used as click trigger to select files.
+                            maxFiles:1,
+                            thumbnailWidth: 500,
+                            thumbnailHeight: 200,
+                            acceptedFiles:"image/*,application/pdf",
+                            init: function () {
+                                this.on("success", function () {
+
+                                });
+                                this.on("thumbnail", function (file, dataUrl) {
+                                    $("div").remove(".dz-success-mark");
+                                    $("div").remove(".dz-filename");
+                                    $("div").remove(".dz-error-mark");
+                                });
+
+                            }
+                            });
+                    </script>
+
+
+<script>
+
+    $.get("http://localhost:8080/xxx", function( data ) {
+        $("#IMAGE_ID").attr("src", "http://localhost:8080/"+data).fadeIn();
+    });
+
+</script>
+
+</body>
+</html>

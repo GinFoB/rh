@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+    <link href="../../static/dist/semantic.min.css"
+          th:href="@{/dist/semantic.min.css}" rel="stylesheet" media="screen" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
+    </script>
+
+    <script src="../../static/dist/semantic.min.js"
+            th:src="@{/dist/semantic.min.js}">
+    </script>
+
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
+
+
+</head>
+<body>
+
+<p th:text="${username}"></p>
+
+
+
+</body>
+</html>

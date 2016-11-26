@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <style>
+        @media (max-width:768px){
+            .footer{
+                position:absolute;width:100%;
+            }
+        }
+        @media (min-width:768px){
+            .footer{
+                position:absolute;bottom:0;height:60px;width:100%;
+            }
+        }
+
+
+    </style>
+    <style>
+        #ok{
+            margin-top: -170px;
+            margin-left: 293px;
+        }
+    </style>
+    <style>
+        #projectEx{
+            padding-top:70px;
+        @media screen and (max-width: 767px) {
+            body { padding-top: 60px; }
+        }
+        @media screen and (min-width:768px) and (max-width: 991px) {
+            body { padding-top: 110px; }
+        }
+        @media screen and (min-width: 992px) {
+            body { padding-top: 60px; }
+        }
+    </style>
+    <style>
+        #imgpr{
+            width: 280px;
+            height: 280px;
+            background-color: #1d2f43;
+            margin-left: 0px;
+            margin-top: -1px;
+        }
+
+        .dz-image{
+            position: absolute;
+            top:-10px;
+        }
+
+        .dropzone-previews{
+            height: 280px;
+            width: 280px;
+            border: dashed 1px #0d71bb;
+            background-color: lightblue;
+        }
+    </style>
+    <style>
+        body
+        {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .fb-profile img.fb-image-lg{
+            z-index: 0;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .fb-profile{
+            margin-top: 160px;
+        }
+
+        .fb-image-profile
+        {
+            margin: -90px 10px 0px 50px;
+            z-index: 9;
+            width: 20%;
+        }
+
+        @media (max-width:768px)
+        {
+
+            .fb-profile-text>h1{
+                font-weight: 700;
+                font-size:16px;
+            }
+
+            .fb-image-profile
+            {
+                margin: -45px 10px 0px 25px;
+                z-index: 9;
+                width: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+
+
+                <li>
+                    <a href="/talent">Recherche Talent</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/add/offre" target="_blank">Ajouter un Offre</a></li>
+                <li><a href="/list/offre" target="_blank">Lister tous les Offres</a></li>
+                <li><a href="/edit/recruiteur" target="_blank">Modifier Profile</a></li>
+                <li><a href="/logout" target="_blank">Se déconnecter</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="fb-profile">
+        <div  id="previews" class="dropzone-previews">
+            <input id="clickable" name="file" style="display: none;" type="file"/>
+            <img align="left"  class="fb-image-profile thumbnail IMAGE_ID fb-image-lg" id="imgpr" src="" alt="Déposez votre image ici"/>
+        </div>
+            <div id="ok" class="panel panel-default" th:if="${user}">
+                <label class="panel-body">
+                    Nom: <a href="#" th:text="${user.firstName}"></a>
+                </label>
+                <br />
+                <label class="panel-body">
+                    Prénom: <a href="#" th:text="${user.lastName}"></a>
+                </label>
+                <br />
+                <label class="panel-body">
+                    Email:  <a href="#" th:text="${user.email}"></a>
+                </label>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-10 col-md-offset-1 jumbotron">
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Name de L'entreprise
+                    <a href="/edit/recruiteur"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div class="panel-footer">
+                    <p th:text="${infos.nameEntreprise}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Description de L'entreprise
+                    <a href="/edit/recruiteur"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div class="panel-footer">
+                    <p th:text="${infos.DesEntreprise}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Address de L'entreprise
+                    <a href="/edit/recruiteur"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div class="panel-footer">
+                    <p th:text="${infos.addressEnt}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Nombre de l'employes à L'entreprise
+                    <a href="/edit/recruiteur"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div class="panel-footer">
+                    <p th:text="${infos.numEmploye}"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<!--
+<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>-->
+
+<script>
+
+    $.get("http://localhost:8080/xxx", function( data ) {
+        $(".IMAGE_ID").attr("src", "http://localhost:8080/"+data).fadeIn();
+    });
+
+</script>
+
+<script src="/dist/js/dropzone.js"></script>
+<script>
+    new Dropzone("div#previews", { // Make the whole body a dropzone
+        url: "/upload/bg", // Set the url
+        previewsContainer: "#previews", // Define the container to display the previews
+        clickable: "#clickable", // Define the element that should be used as click trigger to select files.
+        maxFiles:1,
+        thumbnailWidth: 280,
+        thumbnailHeight: 280,
+        acceptedFiles:"image/*,application/pdf",
+        init: function () {
+            this.on("success", function () {
+                $('#alerted').css('display','block');
+                var alertHide = function () {
+                    $('#alerted').css('display','none');
+                };
+                setTimeout(alertHide, 2000);
+                window.location.href = '/profile/recruiteur';
+            });
+            this.on("thumbnail", function (file, dataUrl) {
+                $("div").remove(".dz-success-mark");
+                $("div").remove(".dz-filename");
+                $("div").remove(".dz-error-mark");
+                $("div").remove(".dz-size");
+            });
+            this.on("thumbnail", function(file, dataUrl) {
+                $('.dz-image').last().find('img').attr({width: '280px', height: '280px'});
+            }),
+                    this.on("success", function(file) {
+                        $('.dz-image').css({width: '280px', height: '280px'});
+                    });
+        }
+
+    });
+</script>
+
+
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+    <link href="../../static/dist/semantic.min.css"
+          th:href="@{/dist/semantic.min.css}" rel="stylesheet" media="screen" />
+    <style>
+
+        body{
+            background-color: #0e566c;
+        }
+
+        .landpage-image{
+            height: 55%;
+        }
+
+        .landpage-image{
+            /* background-image: url("/dist/images/pp.jpg");*/
+            /* background-repeat: no-repeat;
+             background-size: cover;
+             background-attachment: fixed;*/
+
+        }
+
+        @media (min-height: 320px) {
+            .ui.footer.form-page { /* Increased specificity for SO snippet priority */
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+        #im-profile{
+            /* margin-top: 150px;*/
+        }
+        #lo-lo{
+            margin-left: 355px;
+            margin-right: 150px;
+            margin-top: -0px;
+        }
+        #lo-li{
+            margin-left: 355px;
+            margin-right: 150px;
+            margin-top: -190px;
+        }
+        #lo-lu{
+            margin-left: 355px;
+            margin-right: 150px;
+            margin-top: -180px;
+        }
+        #er{
+            margin-left: 10px;
+            margin-top: 55px;
+        }
+        #bg-nn{
+            margin-left: 30px;
+            margin-right: 30px;
+            border-radius: 20px;
+        }
+        #lo-p{
+            margin-top: 20px;
+            margin-left: 500px;
+            margin-right: 30px;
+        }
+        #image-profile{
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
+    </script>
+
+    <script src="../../static/dist/semantic.min.js"
+            th:src="@{/dist/semantic.min.js}">
+    </script>
+
+    <script>
+        var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
+
+
+</head>
+<body>
+
+<div class="ui inverted large top fixed hidden menu">
+    <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item">About</a>
+        <a class="item">FQA</a>
+        <a class="item">Contact</a>
+        <div class="right menu">
+
+            <a href="/search/talent">
+                <button class="ui inverted blue button">
+                    Recherche Talent
+                </button>
+            </a>
+
+            <a href="/add/offre">
+                <button class="ui inverted orange button">
+                    Ajouter un Nouvelle offre
+                </button>
+            </a>
+            <a href="/logout">
+                <button class="ui inverted red button">
+                    Logout
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="ui centered card" id="er">
+    <div class="image">
+        <img src="/dist/images/daniel.jpg" />
+    </div>
+    <div class="content">
+        <a class="header">LOGO</a>
+    </div>
+</div>
+
+
+
+<div class="ui divided message selection list" id="lo-lo" >
+    <div class="item">
+        <i class="large cubes middle aligned icon"></i>
+        <div class="content">
+            <a class="header">Nom de L'entreprise</a>
+            <div class="description"><p th:text="${infos.nameEntreprise}"></p> </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="ui divided message selection list" id="lo-li" >
+    <div class="item">
+        <i class="large cubes left middle aligned icon"></i>
+        <div class="content">
+            <a class="header">Description de l'entrepise</a>
+                <p th:text="${infos.DesEntreprise}" id="ss"></p>
+        </div>
+    </div>
+</div>
+
+<div class="ui divided message selection list" id="lo-lu" >
+    <div class="item">
+        <i class="large cubes middle aligned icon"></i>
+        <div class="content">
+            <a class="header">Numbre de l'employe</a>
+                <p th:text="${infos.numEmploye}"></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>-->

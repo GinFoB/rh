@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <link href="/dist/css/footer.css" rel="stylesheet"/>
+    <link href="/dist/css/form-elements.css"/>
+    <link href="/dist/css/style.css"/>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+
+
+                <li>
+                    <a href="/talent">Recherche Talent</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login" target="_blank">Se connecter</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row" style="margin-top: 100px;">
+                <div class="col-sm-7 text">
+                </div>
+                <div class="col-sm-5 form-box jumbotron" style="border-radius: 20px;">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3 style="color: #7f5006;">Gardez le contact avec les meilleures opportunités</h3>
+                            <p style="color: #000;">Inscription gratuit:</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form th:object="${user}" th:action="@{/new/recruiteur}" method="post"  role="form"  class="registration-form" >
+                            <div class="form-group">
+                                <label class="sr-only" for="form-first-name">First name</label>
+                                <input type="text"  th:field="*{firstName}" placeholder="First name..." class="form-first-name form-control" id="form-first-name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">Last name</label>
+                                <input type="text" th:field="*{lastName}" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-user-name">User name</label>
+                                <input type="text"  th:field="*{userName}"  placeholder="Pseudo..." class="form-last-name form-control" id="form-user-name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-email">Email</label>
+                                <input type="text" th:field="*{email}" placeholder="Email..." class="form-email form-control" id="form-email" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-password">Password</label>
+                                <input type="password"  th:field="*{password}" placeholder="Password..." class="form-email form-control" id="form-password" />
+                            </div>
+
+                            <button type="submit" class="btn btn-danger">Inscription</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+
+
+<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>
+
+</body>
+</html>
+

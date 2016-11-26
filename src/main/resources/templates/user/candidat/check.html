@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <style>
+        @media (max-width:768px){
+            .footer{
+                position:absolute;width:100%;
+            }
+        }
+        @media (min-width:768px){
+            .footer{
+                position:absolute;bottom:0;height:60px;width:100%;
+            }
+        }
+
+        /* body {
+             background: url("dist/images/bg.jpg") no-repeat center center fixed;
+             background-size: 100% auto;;
+             -webkit-background-size: cover;
+             -moz-background-size: cover;
+             -o-background-size: cover;
+             background-size: cover;
+         }*/
+
+    </style>
+    <style>
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #00dba3;
+            background-color: #2b669a;
+            border-color: #000000;
+        }
+    </style>
+    <style>
+        #projectEx{
+            padding-top:70px;
+        @media screen and (max-width: 767px) {
+            body { padding-top: 60px; }
+        }
+        @media screen and (min-width:768px) and (max-width: 991px) {
+            body { padding-top: 110px; }
+        }
+        @media screen and (min-width: 992px) {
+            body { padding-top: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Offre d'emploi <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li><a href="/offres">Vos offres recommandées</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/offre/searchByCategory">Toutes nos offres d'emploi</a></li>
+                        <li><a href="/offre/search">- par régions</a></li>
+                        <li><a href="/offre/searchByCategory/">- par métiers</a></li>
+                        <li><a href="/offre/searchByCategory/">- par technologies</a></li>
+                        <li><a href="/offre/searchByCategory/">- par sociétés</a></li>
+                        <li><a href="/offre/searchByCategory/">- par industries</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/add/cv">Déposer un CV</a>
+                </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login" target="_blank">Se connecter</a></li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="projectEx">
+        <div class="col-lg-8 col-xs-6 col-lg-offset-2 col-xs-offset-2">
+            <div class="jumbotron" style="opacity: 0.9; background-color: #375a7f;">
+                <p>Check Your email, for validation your register</p>
+                <a class="btn btn-danger" href="http://www.gmail.com">Cliquez ici pour accéder à votre compte</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!--<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>-->
+</body>
+</html>

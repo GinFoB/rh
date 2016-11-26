@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <link href="/dist/css/footer.css" rel="stylesheet"/>
+    <link href="/dist/css/form-elements.css"/>
+    <link href="/dist/css/style.css"/>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <!-- Card Projects -->
+        <th:block th:each="offre : ${offres}">
+            <div class="col-md-4" style="margin-top: 60px;">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-responsive" src="/dist/images/offre.png"/>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="ui visible message">
+
+                            <p> Type Contrat  <button th:text="${offre.typeContrat}" class="btn btn-primary"></button> </p>
+
+
+                            <p>Name de L'entreprise : <td th:text="${offre.user.nameEntreprise}"></td> </p>
+
+
+                            <p>Description de L'entreprise : <td th:text="${offre.user.DesEntreprise}"></td></p>
+
+                            <p>Description de poste : <td th:text="${offre.description}"></td></p>
+
+                            <p> Profile Recherché : <td th:text="${offre.profileRech}"></td></p>
+
+                        </div>
+                    </div>
+
+                    <div class="card-action">
+                <form th:action="@{/admin/valide/offre}" method="post">
+                    <input type="hidden" th:value="${offre.id}" name="idOffre"/>
+
+                    <select class="selectpicker" name="display">
+                        <option>ACCEPTE</option>
+                        <option>REFUSE</option>
+                        <option>EN ATTEND</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-danger">Validé</button>
+                </form>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+    <style>
+        @media (max-width:768px){
+            .footer{
+                position:absolute;width:100%;
+            }
+        }
+        @media (min-width:768px){
+            .footer{
+                position:absolute;bottom:0;height:60px;width:100%;
+            }
+        }
+
+    </style>
+
+    <style>
+        #projectEx{
+            padding-top:70px;
+        @media screen and (max-width: 767px) {
+            body { padding-top: 60px; }
+        }
+        @media screen and (min-width:768px) and (max-width: 991px) {
+            body { padding-top: 110px; }
+        }
+        @media screen and (min-width: 992px) {
+            body { padding-top: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Offre d'emploi <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li><a href="/offres">Vos offres recommandées</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/offre/searchByCategory">Toutes nos offres d'emploi</a></li>
+                        <li><a href="/offre/search">- par régions</a></li>
+                        <li><a href="/offre/searchByCategory/">- par métiers</a></li>
+                        <li><a href="/offre/searchByCategory/">- par technologies</a></li>
+                        <li><a href="/offre/searchByCategory/">- par sociétés</a></li>
+                        <li><a href="/offre/searchByCategory/">- par industries</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/add/cv/">Déposer un CV</a>
+                </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/profile/candidat" target="_blank">Profile</a></li>
+                <li><a href="/logout" target="_blank">Se déconnecter</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="margin-top: 80px;">
+    <div class="row">
+        <div class="col-lg-8 jumbotron">
+            <p style="color: #843534;"> Ajouter vos informations pour étre plus visible à les recruteurs. </p>
+
+            <div class="col-lg-8" style="margin-top: 10px;">
+
+                <a href="/uplaod/cv">
+                    <button class="btn btn-primary btn-block ">
+                        AJOUTER VOTRE CV
+                    </button>
+                </a>
+
+            </div>
+
+            <div class="col-lg-8" style="margin-top: 10px;">
+
+                <a  class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#resume" aria-expanded="false" aria-controls="collapseExample">
+                    Resume
+                </a>
+
+
+            </div>
+            <div class="col-lg-8" style="margin-top: 10px;">
+                <a  class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#experience" aria-expanded="false" aria-controls="collapseExample">
+                    Expérience
+                </a>
+
+            </div>
+            <div class="col-lg-8" style="margin-top: 10px;">
+                <a  class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#lang" aria-expanded="false" aria-controls="collapseExample">
+                    Langues
+                </a>
+            </div>
+
+            <div class="col-lg-8" style="margin-top: 10px;">
+                <a  class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#skills" aria-expanded="false" aria-controls="collapseExample">
+                    Compétences et recommandations
+                </a>
+            </div>
+
+            <div class="col-lg-8" style="margin-top: 10px;">
+                <a  class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#formations" aria-expanded="false" aria-controls="collapseExample">
+                    Formation
+                </a>
+            </div>
+
+
+        </div>
+
+
+        <div class="collapse" id="resume">
+            <div class="top-content">
+                <div class="container">
+                    <div class="col-sm-5 form-box">
+                        <div class="form-bottom jumbotron   ">
+                            <form th:object="${cv}" th:action="@{/add/cv}" method="post" role="form" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only">Résumé</label>
+                                    <input type="text" th:field="*{resume}" placeholder="Résumé et clicker sur button enregister..." class="form-control"/>
+                                </div>
+                                <button type="submit" class="btn btn-success" > Enregister </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="collapse" id="experience">
+            <div class="top-content">
+                <div class="container">
+                    <div class="col-sm-5 form-box">
+                        <div class="form-bottom jumbotron">
+                            <form role="form" action="/add/experience" method="post" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="entrepriseName"> Nom de l’entreprise</label>
+                                    <input type="text" name="entrepriseName" placeholder="Nom de l’entreprise ..." class="form-control" id="entrepriseName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="titre">Titre</label>
+                                    <input type="text" name="titre" placeholder="Titre..." class="form-control" id="titre"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="lieu">Lieu</label>
+                                    <input type="text" name="lieu"  placeholder="Lieu..." class=" form-control" id="lieu"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="description">Description</label>
+                                    <input type="text" name="description" placeholder="Description..." class=" form-control" id="description"/>
+                                </div>
+
+                                <button type="submit" class="btn btn-success">Enregister </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="collapse" id="lang">
+            <div class="top-content">
+                <div class="container">
+                    <div class="col-sm-5 form-box jumbotron">
+                        <div class="form-bottom">
+                            <form  action="/add/lang" role="form" method="post" class="registration-form">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="langue">Langue</label>
+                                            <input type="text" name="name" placeholder="Langue..." class="form-control" id="langue"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <select class="selectpicker" name="niveau">
+                                            <option>Notion</option>
+                                            <option>Bilingue ou langue natal</option>
+                                            <option>Compétence professionnelle limite</option>
+                                            <option>Compétence professionnelle</option>
+                                            <option>Compétence professionnelle complete</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-success">Enregister </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="collapse" id="skills">
+            <div class="top-content">
+                <div class="container">
+                    <div class="col-sm-5 form-box jumbotron">
+                        <div class="form-bottom">
+                            <form role="form"  action="/add/skill" method="post" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="skills-is">Langue</label>
+                                    <input type="text" name="skillName" placeholder="Vos domaines d'expertise..." class="form-control" id="skills-is"/>
+                                </div>
+                                <button type="submit" class="btn btn-success">Enregister </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="collapse" id="formations">
+            <div class="top-content">
+                <div class="container">
+                    <div class="col-sm-5 form-box">
+                        <div class="form-bottom jumbotron">
+                            <form role="form" action="/add/formation" method="post" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="ecoleName">Ecole</label>
+                                    <input type="text" name="ecoleName" placeholder="Ecole ..." class="form-control" id="ecoleName"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="diplome">Diplome</label>
+                                    <input type="text" name="diplome" placeholder="Diplome..." class="form-control" id="diplome"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="description">Description</label>
+                                    <input type="text" name="descriptionFormation" placeholder="Description..." class=" form-control" id="description"/>
+                                </div>
+
+                                <button type="submit" class="btn btn-success">Enregister </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>
+</body>
+
+
+</html>
+

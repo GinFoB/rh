@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <style>
+        @media (max-width:768px){
+            .footer{
+                position:absolute;width:100%;
+            }
+        }
+        @media (min-width:768px){
+            .footer{
+                position:absolute;bottom:0;height:60px;width:100%;
+            }
+        }
+    </style>
+
+    <style>
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #00dba3;
+            background-color: #2b669a;
+            border-color: #000000;
+        }
+    </style>
+    <style>
+        #projectEx{
+            padding-top:70px;
+        @media screen and (max-width: 767px) {
+            body { padding-top: 60px; }
+        }
+        @media screen and (min-width:768px) and (max-width: 991px) {
+            body { padding-top: 110px; }
+        }
+        @media screen and (min-width: 992px) {
+            body { padding-top: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+
+
+                <li>
+                    <a href="/talent">Recherche Talent</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/add/offre" target="_blank">Ajouter un Offre</a></li>
+                <li><a href="/logout" target="_blank">Se déconnecter</a></li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-lg-8 col-xs-8 col-xs-offset-2 jumbotron" style="background-color: #375a7f;opacity: 0.9">
+            <p style="color: #843534;">Ajouter les informations de votre entrprise</p>
+            <form role="form"  action="/edit/recruiteur" method="post"  class="registration-form">
+                <div class="form-group">
+                    <label class="sr-only" for="form-first-name">First name</label>
+                    <input type="text"  name="firstName" th:value="${user.firstName}" class="form-first-name form-control" id="form-first-name" />
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="form-last-name">Last name</label>
+                    <input type="text" name="lastName" th:value="${user.lastName}" class="form-last-name form-control" id="form-last-name" />
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="form-user-name">User name</label>
+                    <input type="text"  name="email"  th:value="${user.email}" class="form-last-name form-control" id="form-user-name" />
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="nameEntreprise">Nom de L'entreprise</label>
+                    <input type="text" name="nameEntreprise" th:value="${user.nameEntreprise}" placeholder="Nom de l'entreprise" class="form-control" id="nameEntreprise"/>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="discription">Diplome</label>
+                    <input type="text" name="DesEntreprise"  th:value="${user.DesEntreprise}" placeholder="Description de l'entreprise" class="form-control" id="discription"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="add">Address</label>
+                    <input type="text" name="addressEnt" th:value="${user.addressEnt}" placeholder="Address de l'entreprise" class=" form-control" id="add"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="num">Numbre</label>
+                    <input type="text" name="numEmploye" th:value="${user.numEmploye}" placeholder="Nombre de l'employé" class=" form-control" id="num"/>
+                </div>
+
+                <button type="submit" class="btn btn-success">Modifier</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>
+</body>
+</html>
+
+

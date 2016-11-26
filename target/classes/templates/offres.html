@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <link href="/dist/css/mdb.min.css" rel="stylesheet"/>
+    <style>
+        @media (max-width:768px){
+            .footer{
+                position:absolute;width:100%;
+            }
+        }
+        @media (min-width:768px){
+            .footer{
+                position:absolute;bottom:0;height:60px;width:100%;
+            }
+        }
+
+
+    </style>
+    <style>
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-primary:active,
+        .btn-primary.active {
+            color: #00dba3;
+            background-color: #2b669a;
+            border-color: #000000;
+        }
+    </style>
+    <style>
+        #projectEx{
+            padding-top:70px;
+        @media screen and (max-width: 767px) {
+            body { padding-top: 60px; }
+        }
+        @media screen and (min-width:768px) and (max-width: 991px) {
+            body { padding-top: 110px; }
+        }
+        @media screen and (min-width: 992px) {
+            body { padding-top: 60px; }
+        }
+    </style>
+
+    <style>
+        .card {
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .card {
+            margin-top: 10px;
+            box-sizing: border-box;
+            border-radius: 2px;
+            background-clip: padding-box;
+        }
+        .card span.card-title {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .card .card-image {
+            position: relative;
+            overflow: hidden;
+        }
+        .card .card-image img {
+            border-radius: 2px 2px 0 0;
+            background-clip: padding-box;
+            position: relative;
+            z-index: -1;
+        }
+        .card .card-image span.card-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 16px;
+        }
+        .card .card-content {
+            padding: 16px;
+            border-radius: 0 0 2px 2px;
+            background-clip: padding-box;
+            box-sizing: border-box;
+        }
+        .card .card-content p {
+            margin: 0;
+            color: inherit;
+        }
+        .card .card-content span.card-title {
+            line-height: 48px;
+        }
+        .card .card-action {
+            border-top: 1px solid rgba(160, 160, 160, 0.2);
+            padding: 16px;
+        }
+        .card .card-action a {
+            color: #ffab40;
+            margin-right: 16px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+        .card .card-action a:hover {
+            color: #ffd8a6;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Offre d'emploi <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li><a href="/offres">Vos offres recommandées</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/offre/searchByCategory">Toutes nos offres d'emploi</a></li>
+                        <li><a href="/offre/search">- par régions</a></li>
+                        <li><a href="/offre/searchByCategory/">- par métiers</a></li>
+                        <li><a href="/offre/searchByCategory/">- par technologies</a></li>
+                        <li><a href="/offre/searchByCategory/">- par sociétés</a></li>
+                        <li><a href="/offre/searchByCategory/">- par industries</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/add/cv/">Déposer un CV</a>
+                </li>
+
+            </ul>
+
+            <ul th:if="${user}" class="nav navbar-nav navbar-right">
+                    <li><a href="/profile/candidat" target="_blank">Profile</a></li>
+                <li><a href="/logout" target="_blank">Se déconnecter</a></li>
+
+            </ul >
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <!-- Card Projects -->
+        <th:block th:each="offre : ${offres}">
+        <div class="col-md-4" style="margin-top: 60px;">
+            <div class="card">
+                <div class="card-image">
+                    <img class="img-responsive" src="/dist/images/offre.png"/>
+                </div>
+
+                <div class="card-content">
+                        <div class="ui visible message">
+
+                            <p> Type Contrat  <button th:text="${offre.typeContrat}" class="btn btn-primary"></button> </p>
+
+
+                            <p>Name de L'entreprise : <td th:text="${offre.user.nameEntreprise}"></td> </p>
+
+
+                            <p>Description de L'entreprise : <td th:text="${offre.user.DesEntreprise}"></td></p>
+
+                            <p>Description de poste : <td th:text="${offre.description}"></td></p>
+
+                            <p> Profile Recherché : <td th:text="${offre.profileRech}"></td></p>
+
+                        </div>
+                </div>
+
+                <div class="card-action">
+
+                    <a href="#" target="new_blank">Voir</a>
+                    <a href="/postuler" target="new_blank">Postuler</a>
+
+                </div>
+            </div>
+        </div>
+        </th:block>
+    </div>
+</div>
+
+
+
+
+<script src="/dist/js/jquery-2.2.3.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="/dist/js/tether.min.js"></script>
+<script src="/dist/js/mdb.min.js"></script>
+
+<!--
+<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>-->
+
+</body>
+</html>
+
+
+
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link href="../../static/dist/semantic.min.css"
+          th:href="@{/dist/semantic.min.css}" rel="stylesheet" media="screen" />
+
+    <style>
+        #oe {
+            margin-top: 50px;
+        }
+    </style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
+    </script>
+
+    <script src="../../static/dist/semantic.min.js"
+            th:src="@{/dist/semantic.min.js}">
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="ui inverted large top fixed hidden menu">
+    <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item">About</a>
+        <a class="item">FQA</a>
+        <a class="item">Contact</a>
+        <div class="right menu">
+                <a href="/profile/candidat">
+                    <button class="ui inverted red button">
+                        Profile
+                    </button>
+                </a>
+        </div>
+    </div>
+</div>
+
+<div id="oe">
+    <th:block th:each="offre : ${offres}">
+        <div class="ui visible message">
+
+            <p style="color: red"> Type Contrat</p>
+            <button th:text="${offre.typeContrat}" class="ui inverted red button"></button><br />
+
+            <p style="color: red">Name de L'entreprise</p>
+            <p><td th:text="${offre.user.nameEntreprise}"></td></p>
+
+
+            <p style="color: red">Description de L'entreprise</p>
+            <p><td th:text="${offre.user.DesEntreprise}"></td></p>
+
+            <p style="color: red">Description de poste</p>
+            <p><td th:text="${offre.description}"></td></p>
+
+            <p style="color: red"> Profile Recherché</p>
+            <p><td th:text="${offre.profileRech}"></td></p>
+
+
+            <button class="ui inverted blue button">Postuler</button>
+        </div>
+    </th:block>
+</div>
+
+
+</body>
+</html>-->

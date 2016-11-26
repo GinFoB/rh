@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <link href="/dist/css/footer.css" rel="stylesheet"/>
+    <link href="/dist/css/form-elements.css"/>
+    <link href="/dist/css/style.css"/>
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/talent">Recherche Talent</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/profile/recruiteur" target="_blank">Profile</a></li>
+                <li><a href="/logout" target="_blank">Se déconnecter</a></li>
+
+            </ul >
+
+
+        </div>
+    </div>
+</div>
+
+<div class="top-content">
+    <div class="inner-bg">
+        <div class="container">
+            <div class="row" style="margin-top: 100px;">
+                <div class="col-sm-7 text">
+                </div>
+                <div class="col-sm-5 form-box jumbotron" style="border-radius: 20px;">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3 style="color: #7f5006;">Gardez le contact avec les meilleures opportunités</h3>
+                            <p style="color: #000;">Inscription gratuit:</p>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom">
+                        <form th:object="${offre}" th:action="@{/add/offre}" method="post"  role="form"  class="registration-form" >
+                            <div class="form-group">
+                                <label class="sr-only" for="form-first-name">Description de poste</label>
+                                <input type="text" name="description" placeholder="Description de poste..." class="form-first-name form-control" id="form-first-name" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">Profile recherché</label>
+                                <input type="text" name="profileRech" placeholder="Profile recherché..." class="form-last-name form-control" id="form-last-name" />
+                            </div>
+
+                            <div class="form-group">
+                                <label class="sr-only" for="form-last-name">Nombre Besoin</label>
+                                <input type="text" name="numBesoin" placeholder="Nombre Besoin..." class="form-last-name form-control" id="form-last-name" />
+                            </div>
+
+                            <div class="form-group">
+                                    <select class="selectpicker" name="typeContrat">
+                                        <option>CDD</option>
+                                        <option>CDI</option>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="selectpicker" name="ctg">
+                                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.type}"></option>
+                                </select>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-danger">Inscription</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/dist/js/jquery.backstretch.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+
+<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>
+
+</body>
+</html>
+
+
+
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link href="../../static/dist/semantic.min.css"
+          th:href="@{/dist/semantic.min.css}" rel="stylesheet" media="screen" />
+
+    <style>
+        body{
+            background-color: #2e3032;
+        }
+        @media (min-height: 320px) {
+            .ui.footer.form-page { /* Increased specificity for SO snippet priority */
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+        }
+        #one{
+            margin-top: 10px;
+            margin-left: 4px;
+        }
+        #lang{
+            margin-top: 60px;
+            margin-left: 10px;
+        }
+        #Expérience{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        #login{
+            margin-top: 50px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}">
+    </script>
+
+    <script src="../../static/dist/semantic.min.js"
+            th:src="@{/dist/semantic.min.js}">
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="ui inverted large top fixed hidden menu">
+    <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item">About</a>
+        <a class="item">FQA</a>
+        <a class="item">Contact</a>
+        <div class="right menu">
+
+        </div>
+    </div>
+</div>
+
+
+
+<form th:object="${offre}" th:action="@{/add/offre}" method="post" class="ui form">
+
+    <div class="ui form" id="lang">
+        <div class="field column eight wide">
+            <textarea name="description" rows="2" placeholder="Description de poste"></textarea>
+        </div>
+    </div>
+
+
+    <div class="ui form" id="Expérience">
+        <div class="field column eight wide">
+            <textarea name="profileRech" rows="2" placeholder="Profile recherché"></textarea>
+        </div>
+    </div>
+
+    <select name="typeContrat" class="ui dropdown" id="two">
+        <option value="">Type Contract</option>
+        <option> CDI </option>
+        <option> CDD </option>
+    </select>
+
+    <select name="ctg" class="ui dropdown" id="one">
+        <option value="">Category</option>
+        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.type}"></option>
+    </select>
+
+    <button class="ui button blue" type="submit" id="btn-add">OK</button>
+</form>
+
+</body>
+</html>-->

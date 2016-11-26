@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+    <link href="/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/dist/css/resp.css" rel="stylesheet"/>
+    <style>
+        @media (max-width:768px){
+            .footer{
+                position:absolute;width:100%;
+            }
+        }
+        @media (min-width:768px){
+            .footer{
+                position:absolute;bottom:0;height:60px;width:100%;
+            }
+        }
+
+    </style>
+    <style>
+        #imgpr{
+            width: 280px;
+            height: 280px;
+            background-color: #1d2f43;
+            margin-left: 0px;
+            margin-top: -1px;
+        }
+
+        .dz-image{
+            position: absolute;
+            top:-10px;
+        }
+
+        .dropzone-previews{
+            height: 280px;
+            width: 280px;
+            border: dashed 1px #0d71bb;
+            background-color: lightblue;
+        }
+        #ok{
+            margin-top: -170px;
+            margin-left: 293px;
+        }
+    </style>
+    <style>
+        #projectEx{
+            padding-top:70px;
+        @media screen and (max-width: 767px) {
+            body { padding-top: 60px; }
+        }
+        @media screen and (min-width:768px) and (max-width: 991px) {
+            body { padding-top: 110px; }
+        }
+        @media screen and (min-width: 992px) {
+            body { padding-top: 60px; }
+        }
+    </style>
+
+    <style>
+       #clickable{
+            position: relative;
+            top:60px;
+
+         }
+        .fb-profile img.fb-image-lg{
+            z-index: 0;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .fb-image-profile
+        {
+            margin: -90px 10px 0px 50px;
+            z-index: 9;
+            width: 20%;
+        }
+
+        @media (max-width:768px)
+        {
+
+            .fb-profile-text>h1{
+                font-weight: 700;
+                font-size:16px;
+            }
+
+            .fb-image-profile
+            {
+                margin: -45px 10px 0px 25px;
+                z-index: 9;
+                width: 20%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="../" class="navbar-brand">Recruitement</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Offre d'emploi <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li><a href="/offres">Vos offres recommandées</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/offre/searchByCategory">Toutes nos offres d'emploi</a></li>
+                        <li><a href="/offre/search">- par régions</a></li>
+                        <li><a href="/offre/searchByCategory/">- par métiers</a></li>
+                        <li><a href="/offre/searchByCategory/">- par technologies</a></li>
+                        <li><a href="/offre/searchByCategory/">- par sociétés</a></li>
+                        <li><a href="/offre/searchByCategory/">- par industries</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/add/cv">Déposer un CV</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/add/cv" target="_blank">CvTheque</a></li>
+                <li><a href="/logout" target="_blank">Se déconnecter</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="fb-profile" style="margin-top: 140px;">
+        <div style="margin-top: 73px;"  id="previews" class="dropzone-previews">
+            <input id="clickable" name="file" style="display: none;" type="file"/>
+            <img align="left"  class="fb-image-profile thumbnail IMAGE_ID fb-image-lg" id="imgpr" src="" alt="Déposez votre image ici"/>
+        </div>
+        <div id="ok"  class="fb-profile-text">
+            <div  class="panel panel-default" th:if="${user}">
+               <label class="panel-body">
+                   Nom: <a href="#" th:text="${user.firstName}"></a>
+               </label>
+                <br />
+                <label class="panel-body">
+                    Prénom: <a href="#" th:text="${user.lastName}"></a>
+                </label>
+                <br />
+                <label class="panel-body">
+                    Email:  <a href="#" th:text="${user.email}"></a>
+                </label>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-10 jumbotron">
+
+
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Résumé
+                    <a href="/edit/resume"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div  th:if="${cvTheque}" class="panel-footer" style="background-color: #cfd0d2;">
+                    <input type="hidden" name="idCv" th:value="${cvTheque.id}" />
+                    <p style="color: black;"   th:text="${cvTheque.resume}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Expérience
+                    <a href="/edit/experience"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div th:each="s : ${experiences}" class="panel-footer" style="background-color: #cfd0d2;">
+                    <label style="color: #0D47A1">Poste :</label>
+                     <p style="color: black;" th:text="${s.titre}"></p>
+                    <label style="color: #0D47A1">L'entreprise :</label>
+                     <p style="color: black;" th:text="${s.entrepriseName}"></p>
+                    <label style="color: #0D47A1">Lieu :</label>
+                     <p style="color: black;" th:text="${s.lieu}"></p>
+                    <label style="color: #0D47A1">Description :</label>
+                     <p style="color: black;" th:text="${s.description}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Langues
+                    <a href="/edit/lang"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div th:each="s : ${langs}" class="panel-footer" style="background-color: #cfd0d2;">
+                    <p style="color: black;" th:text="${s.name}"></p>
+                    <p style="color: black;font-family: 'DIN Alternate'" th:text="${s.niveau}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Compétences et recommandations
+                    <a href="/edit/skill"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div th:each="s : ${skills}" class="panel-footer" style="background-color: #cfd0d2;">
+                    <p style="color: black;" th:text="${s.skillName}"></p>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    Formation
+                    <a href="/edit/formation"><button class="btn btn-sm btn-danger">Modifier</button></a>
+                </div>
+                <div th:each="s : ${formations}" class="panel-footer"  style="background-color: #cfd0d2;">
+                    <p style="color: black;" th:text="${s.ecoleName}"></p>
+                    <p style="color: black;" th:text="${s.diplome}"></p>
+                    <p style="color: black;" th:text="${s.descriptionFormation}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div style="width: 180px; height: 265px;" id="example1"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--<script src="/dist/js/jquery.backstretch.min.js"></script>-->
+<script src="/dist/js/bootstrap.min.js"></script>
+
+<!--<script>
+    $.backstretch([
+        "/dist/images/bg.jpg"
+        , "/dist/images/img2.jpg"
+        , "/dist/images/img3.jpg"
+    ], {duration: 3000, fade: 750});
+</script>-->
+
+<script type="text/javascript" src="/dist/js/pdf.js"></script>
+<script src="/dist/js/pdf.worker.js"></script>
+<script src="/dist/js/pdfobject.js"></script>
+
+<script>
+
+    $.get("http://localhost:8080/xxx", function( data ) {
+        $(".IMAGE_ID").attr("src", "http://localhost:8080/"+data).fadeIn();
+    });
+
+</script>
+
+<script src="/dist/js/dropzone.js"></script>
+<script>
+    new Dropzone("div#previews", { // Make the whole body a dropzone
+        url: "/upload/bg", // Set the url
+        previewsContainer: "#previews", // Define the container to display the previews
+        clickable: "#clickable", // Define the element that should be used as click trigger to select files.
+        maxFiles:1,
+        thumbnailWidth: 280,
+        thumbnailHeight: 280,
+        acceptedFiles:"image/*,application/pdf",
+        init: function () {
+            this.on("success", function () {
+                $('#alerted').css('display','block');
+                var alertHide = function () {
+                    $('#alerted').css('display','none');
+                };
+                setTimeout(alertHide, 2000);
+                window.location.href = '/profile/candidat';
+            });
+            this.on("thumbnail", function (file, dataUrl) {
+                $("div").remove(".dz-success-mark");
+                $("div").remove(".dz-filename");
+                $("div").remove(".dz-error-mark");
+                $("div").remove(".dz-size");
+            });
+            this.on("thumbnail", function(file, dataUrl) {
+                $('.dz-image').last().find('img').attr({width: '280px', height: '280px'});
+            }),
+                    this.on("success", function(file) {
+                        $('.dz-image').css({width: '280px', height: '280px'});
+                    });
+        }
+
+    });
+</script>
+
+
+
+<!--
+<script>
+    $.get("http://localhost:8080/cv/name", function( data ) {
+        url = data;
+        PDFObject.embed(url, "#example1");
+    });
+</script>
+-->
+
+
+</body>
+</html>
+
